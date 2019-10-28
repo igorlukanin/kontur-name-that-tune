@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0e27d666-34e5-4918-b116-809e2101d4ab" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/50-degrees-minium-agitation.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Bill.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Dan.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Elon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Pavel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/Zuck.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/Grunt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/RequireJS.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/angular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/atom.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/autoprefixer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/backbone.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/backbone.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/bem.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/bootstrap.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/bower.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/broccoli.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/cofe-script.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/docker.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/ember.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/ember.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/eslint.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/flow.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/git.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/github.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/gitlab.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/glamorous.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/gulp.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/handlebars.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/jasmine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/jest.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/js-badge.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/karma.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/kontur.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/kontur.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/meteor.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/mithril.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/mocha.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/momentjs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/mustache_js.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/nodejs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/postcss.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/redux-form.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/rxjs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/styled-component.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/sublime.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/teamcity.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/vscode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/vue.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/webpack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/webstorm.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/logos/yt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/phone-call.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/team.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clear_store.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/angular.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/aurelia.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backbone.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/ember.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/js-badge.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/react.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/vue.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/leaderboard.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1Sn43N4sqhcjR1M2YXoEU6PKoh8" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0e27d666-34e5-4918-b116-809e2101d4ab" name="Default Changelist" comment="" />
+      <created>1572185825826</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572185825826</updated>
+      <workItem from="1572185827016" duration="4627000" />
+      <workItem from="1572278119061" duration="4853000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
