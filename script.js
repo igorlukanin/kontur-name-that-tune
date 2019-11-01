@@ -62,10 +62,16 @@ document.addEventListener('DOMContentLoaded', function () {
             this.startGameBtn = document.querySelector('.js-start-game');
             this.gameElement = document.querySelector('.js-game-window');
             this.gameScoreElement = document.querySelector('.js-score');
+            this.gameResetButton = document.querySelector('.js-reset');
 
             this.startGameBtn.addEventListener('click', () => {
                 this.rulesFrame.classList.toggle('hidden');
+                this.gameResetButton.classList.toggle('hidden');
                 this.run();
+            });
+
+            this.gameResetButton.addEventListener('click', () => {
+                location.reload();
             });
         }
 
