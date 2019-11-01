@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     class Game {
         constructor(user, config) {
-            this.currentRound = 0;
+            this.nextRoundIndex = 0;
 
             this.user = user;
             this.rounds = shuffle(config.questions)
@@ -61,6 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.rulesFrame = document.querySelector('.js-frame_rules');
             this.startGameBtn = document.querySelector('.js-start-game');
             this.gameElement = document.querySelector('.js-game-window');
+            this.gameScoreElement = document.querySelector('.js-score');
 
             this.startGameBtn.addEventListener('click', () => {
                 this.rulesFrame.classList.toggle('hidden');
@@ -79,33 +80,36 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         nextRound() {
-            if (this.currentRound < this.rounds.length - 1) {
-                this.renderRound(this.rounds[this.currentRound]);
-                this.currentRound += 1;
+            if (this.nextRoundIndex < this.rounds.length - 1) {
+                this.renderRound(this.rounds[this.nextRoundIndex]);
+                this.nextRoundIndex += 1;
             } else {
                 this.renderResult();
             }
         }
 
-        renderResult() {
-            const result = this.rounds
+        calcTotalScore() {
+            return this.rounds
                 .map(x => x.roundScore)
                 .reduce((a, x) => a + x);
+        }
 
-            const resultText = this.createParagraph('Your score: ' + result);
-            this.removeChildren(this.gameElement);
-            this.gameElement.appendChild(resultText);
+        renderResult() {
+            this.clearForm();
+            this.renderScore(this.gameScoreElement);
             // todo
         }
 
         renderRound(round) {    // Round
-            const container = document.createElement('div');
+            this.clearForm();
 
+            this.renderScore(this.gameScoreElement);
+
+            const container = document.createElement('div');
             container.appendChild(this.createParagraph(round.question.question));
             this.renderCodeSample(container, round);
             this.renderAnswers(container, round);
 
-            this.removeChildren(this.gameElement);
             this.gameElement.appendChild(container);
         }
 
@@ -113,6 +117,17 @@ document.addEventListener('DOMContentLoaded', function () {
             while (node.firstChild) {
                 node.removeChild(node.firstChild);
             }
+        }
+
+        clearForm() {
+            this.removeChildren(this.gameScoreElement);
+            this.removeChildren(this.gameElement);
+        }
+
+        renderScore(parentElement) {
+            const result = this.calcTotalScore();
+            const score = this.createParagraph('Total score: ' + result);
+            parentElement.appendChild(score);
         }
 
         renderCodeSample(
