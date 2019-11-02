@@ -43,6 +43,30 @@ document.addEventListener('DOMContentLoaded', function () {
         emailInput.validity.valid && nameInput.validity.valid ? submitForm(e, data) : null;
     });
 
+    class Timer {
+        timerDOMNode;
+        constructor(config) {
+            this.timerDOMNode = document.querySelector('.js-timer');
+            this.config = config;
+            this.timerDOMNode.innerHTML = this.config.gameTime;
+            this.timerDOMNode.classList.toggle('hidden');
+        }
+
+        startTimer(gameTime){
+            let timer = setInterval(() => {
+                gameTime--;
+                if (gameTime <= 0) {
+                    clearTimeout(timer);
+                }
+                this.timerDOMNode.innerHTML = gameTime;
+            },1000);
+        }
+
+        run() {
+            this.startTimer(this.config.gameTime);
+        }
+    }
+
     class Game {
         constructor(user, config) {
             this.nextRoundIndex = 0;
@@ -77,6 +101,11 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let i = 0; i < this.rounds.length; ++i) {
                 this.renderRound(this.rounds[i]);
             }
+
+            const timer = new Timer({
+                gameTime: 50
+            });
+            timer.run();
         }
 
         nextRound() {
