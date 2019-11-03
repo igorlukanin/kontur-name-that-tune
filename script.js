@@ -25,11 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
         form.reset();
         formFrame.classList.toggle('hidden');
 
-        const game = new Game(currentUser,
+        const game = new Game(
+            currentUser,
             {
                 gameLength: 4,
                 maxRoundScore: 10,
-                questions: questions
+                questions: questions,
+                timer: new Timer({gameTime: 50}),
             });
 
         game.showRules();
@@ -47,50 +49,92 @@ document.addEventListener('DOMContentLoaded', function () {
         timerDOMNode;
         constructor(config) {
             this.timerDOMNode = document.querySelector('.js-timer');
-            this.config = config;
-            this.timerDOMNode.innerHTML = this.config.gameTime;
-            this.timerDOMNode.classList.toggle('hidden');
+            this.gameTime = config.gameTime;
+            this.timerDOMNode.innerHTML = this.gameTime;
         }
 
         startTimer(gameTime){
-            let timer = setInterval(() => {
-                gameTime--;
+            this.timer = setInterval(() => {
+                this.gameTime = gameTime--;
                 if (gameTime <= 0) {
-                    clearTimeout(timer);
+                    this.destroy();
                 }
                 this.timerDOMNode.innerHTML = gameTime;
             },1000);
         }
 
         run() {
-            this.startTimer(this.config.gameTime);
+            this.timerDOMNode.classList.toggle('hidden');
+            this.startTimer(this.gameTime);
+        }
+
+        addTime(seconds) {
+            this.destroy();
+            this.startTimer(this.gameTime + seconds);
+            this.showAddedTime(seconds);
+        }
+
+        destroy() {
+            clearTimeout(this.timer);
+        }
+
+        showAddedTime(seconds) {
+            const addedTimeContainer = document.createElement('div');
+            addedTimeContainer.innerText = `+${seconds}`;
+            addedTimeContainer.className = 'added-time';
+            this.timerDOMNode.appendChild(addedTimeContainer);
         }
     }
 
     class Game {
         constructor(user, config) {
-            this.nextRoundIndex = 0;
-
-            this.user = user;
-            this.rounds = shuffle(config.questions)
-                .slice(0, config.gameLength)
-                .map(x => new Round(x, config.maxRoundScore));
-
             this.rulesFrame = document.querySelector('.js-frame_rules');
             this.startGameBtn = document.querySelector('.js-start-game');
             this.gameElement = document.querySelector('.js-game-window');
             this.gameScoreElement = document.querySelector('.js-score');
             this.gameResetButton = document.querySelector('.js-reset');
+            this.timer = config.timer;
+
+            this.nextRoundIndex = 0;
+
+            this.user = user;
+            this.rounds = shuffle(config.questions)
+                .slice(0, config.gameLength)
+                .map(x => new Round(x, config.maxRoundScore, this.timer));
 
             this.startGameBtn.addEventListener('click', () => {
                 this.rulesFrame.classList.toggle('hidden');
-                this.gameResetButton.classList.toggle('hidden');
                 this.run();
+                this.timer.run();
             });
 
             this.gameResetButton.addEventListener('click', () => {
                 location.reload();
             });
+        }
+
+        finish() {
+            this.timer.destroy();
+            this.gameResetButton.classList.toggle('hidden');
+
+            const totalScoreElem = document.createElement('div');
+            const totalScore = this.calcTotalScore();
+            totalScoreElem.className = 'total-score';
+            totalScoreElem.innerText = `${totalScore}`;
+            this.gameElement.appendChild(totalScoreElem);
+
+            this.saveData(this.user, totalScore);
+        }
+
+        saveData(user, score) {
+            const {name, email} = user;
+            const results = JSON.parse(localStorage.getItem('HolyJS-kontur-name-that-tune'));
+            const userInfo = {name: name, email: email, score: score};
+            if (!!results) {
+                localStorage.setItem('HolyJS-kontur-name-that-tune', JSON.stringify([userInfo, ...results]));
+            } else {
+                localStorage.setItem('HolyJS-kontur-name-that-tune', JSON.stringify([userInfo]));
+            }
         }
 
         showRules() {
@@ -101,11 +145,6 @@ document.addEventListener('DOMContentLoaded', function () {
             for (let i = 0; i < this.rounds.length; ++i) {
                 this.renderRound(this.rounds[i]);
             }
-
-            const timer = new Timer({
-                gameTime: 50
-            });
-            timer.run();
         }
 
         nextRound() {
@@ -126,10 +165,10 @@ document.addEventListener('DOMContentLoaded', function () {
         renderResult() {
             this.clearForm();
             this.renderScore(this.gameScoreElement);
-            // todo
+            this.finish();
         }
 
-        renderRound(round) {    // Round
+        renderRound(round) {// Round
             this.clearForm();
 
             this.renderScore(this.gameScoreElement);
@@ -160,8 +199,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         renderCodeSample(
-            parentElement,  // element
-            round) {        // Round
+            parentElement, // element
+            round  // Round
+        ) {
             const codeContainer = document.createElement('pre');
             const sampleLines = round.getSampleLines();
 
@@ -180,7 +220,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         renderAnswers(
             parentElement,  // element
-            round) {        // Round
+            round  // Round
+        ) {
             const buttonsContainer = document.createElement('div');
             const possibleAnswers = round.question.possibleAnswers;
 
@@ -227,11 +268,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     class Round {
-        constructor(question, maxScore) {
+        constructor(question, maxScore, timer) {
             this.maxScore = maxScore;               // int
             this.roundScore = 0;                    // int
             this.visibleLines = 1;                  // int
             this.question = question;               // Question
+            this.timer = timer;                 // func
         }
 
         getSampleLines() {
@@ -246,6 +288,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         acceptAnswer(answer) {
             if (answer === this.question.correctAnswer) {
+                this.timer.addTime(10);
                 switch (this.visibleLines) {
                     case 1:
                         this.roundScore = this.maxScore * 1.0;
