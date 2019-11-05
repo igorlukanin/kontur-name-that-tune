@@ -28,14 +28,22 @@
         <section class="frame frame_rules js-frame_rules hidden">
             <div class="rules">
                 <h1 class="frame__title">Правила:</h1>
-                <div class="frame__content">Текст правил, не правил</div>
+                <div class="frame__content">
+                    <p>Привет! Тебе предложено отгадать/узнать какой язык программирования или фреймворк мы загадали.</p>
+                    <p>Каждый раунд тебе будет показана первая строка загаданного кода и четыре варианта ответа.
+                        Ты можешь посмотреть еще несколько строк данного фрагмента кода.
+                        Каждый раз при нажатии ссылки "Показать еще строку" твоё колличество баллов за правильный ответ в этом раунде уменьшается, чем меньше строк показано, тем больше баллов ты получишь.
+                    </p>
+                    <p>В игре есть таймер обратного отсчета, когда он остановится игра закончится. При правильном ответе, время в таймере увеличивается.</p>
+                    <p>Удачи!</p>
+                </div>
                 <button type="submit" class="js-start-game btn">Начать игру</button>
             </div>
         </section>
 
         <section class="frame frame_game js-frame_game hidden">
             <button type="submit" class="js-reset hidden btn">Начать заново</button>
-            <div class="js-timer hidden timer"></div>
+            <div class="js-timer timer"></div>
             <div class="js-score score"></div>
             <div class="js-game-window"></div>
         </section>

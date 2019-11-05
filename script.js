@@ -53,19 +53,22 @@ document.addEventListener('DOMContentLoaded', function () {
             this.timerDOMNode.innerHTML = this.gameTime;
         }
 
-        startTimer(gameTime){
+        startTimer(gameTime, finishGame){
             this.timer = setInterval(() => {
                 this.gameTime = gameTime--;
                 if (gameTime <= 0) {
                     this.destroy();
+                    this.roundContainerElement = document.querySelector('.js-round-container');
+                    this.roundContainerElement.classList.toggle('hidden');
+
+                    finishGame();
                 }
                 this.timerDOMNode.innerHTML = gameTime;
             },1000);
         }
 
-        run() {
-            this.timerDOMNode.classList.toggle('hidden');
-            this.startTimer(this.gameTime);
+        run(finishGame) {
+            this.startTimer(this.gameTime, finishGame);
         }
 
         addTime(seconds) {
@@ -94,6 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.gameElement = document.querySelector('.js-game-window');
             this.gameScoreElement = document.querySelector('.js-score');
             this.gameResetButton = document.querySelector('.js-reset');
+            this.timerDOMNode = document.querySelector('.js-timer');
             this.timer = config.timer;
 
             this.nextRoundIndex = 0;
@@ -107,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.rulesFrame.classList.toggle('hidden');
                 this.gameFrame.classList.toggle('hidden');
                 this.run();
-                this.timer.run();
+                this.timer.run(this.finish.bind(this));
             });
 
             this.gameResetButton.addEventListener('click', () => {
@@ -118,6 +122,8 @@ document.addEventListener('DOMContentLoaded', function () {
         finish() {
             this.timer.destroy();
             this.gameResetButton.classList.toggle('hidden');
+            this.gameScoreElement.classList.toggle('hidden');
+            this.timerDOMNode.classList.toggle('hidden');
 
             const totalScoreElem = document.createElement('div');
             const totalScore = this.calcTotalScore();
@@ -176,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.renderScore(this.gameScoreElement);
 
             const container = document.createElement('div');
+            container.classList = 'js-round-container';
             container.appendChild(this.createParagraph(round.question.question));
             this.renderCodeSample(container, round);
             this.renderAnswers(container, round);

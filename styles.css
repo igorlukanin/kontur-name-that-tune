@@ -148,8 +148,13 @@ html {
     font-size: 24px;
     margin-top: 20px;
 }
+@keyframes added-time {
+    0% {top: 30px}
+    100%{top: 0}
+}
 .added-time {
     position: absolute;
     top: 30px;
     right: 0;
+    animation: added-time 1.5s infinite ease-in-out;
 }
