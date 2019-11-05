@@ -89,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     class Game {
         constructor(user, config) {
             this.rulesFrame = document.querySelector('.js-frame_rules');
+            this.gameFrame = document.querySelector('.js-frame_game');
             this.startGameBtn = document.querySelector('.js-start-game');
             this.gameElement = document.querySelector('.js-game-window');
             this.gameScoreElement = document.querySelector('.js-score');
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             this.startGameBtn.addEventListener('click', () => {
                 this.rulesFrame.classList.toggle('hidden');
+                this.gameFrame.classList.toggle('hidden');
                 this.run();
                 this.timer.run();
             });
@@ -120,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const totalScoreElem = document.createElement('div');
             const totalScore = this.calcTotalScore();
             totalScoreElem.className = 'total-score';
-            totalScoreElem.innerText = `${totalScore}`;
+            totalScoreElem.innerText = `Ваш итоговый результат: ${totalScore}`;
             this.gameElement.appendChild(totalScoreElem);
 
             this.saveData(this.user, totalScore);
@@ -194,8 +196,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         renderScore(parentElement) {
             const result = this.calcTotalScore();
-            const score = this.createParagraph('Total score: ' + result);
-            parentElement.appendChild(score);
+            const score = `Счет: ${result}`;
+            parentElement.innerText = score;
         }
 
         renderCodeSample(
@@ -203,13 +205,14 @@ document.addEventListener('DOMContentLoaded', function () {
             round  // Round
         ) {
             const codeContainer = document.createElement('pre');
+            codeContainer.className = 'code';
             const sampleLines = round.getSampleLines();
 
             for (let i = 0; i < sampleLines.length; ++i) {
                 codeContainer.appendChild(this.createParagraph(sampleLines[i]));
             }
 
-            const button = this.createButton('Show one more line', () => {
+            const button = this.createButton('Показать еще строку', 'btn btn_link', () => {
                 round.showOneMoreLine();
                 this.renderRound(round);
             });
@@ -223,11 +226,12 @@ document.addEventListener('DOMContentLoaded', function () {
             round  // Round
         ) {
             const buttonsContainer = document.createElement('div');
+            buttonsContainer.className = 'answers-row';
             const possibleAnswers = round.question.possibleAnswers;
 
             for (let i = 0; i < possibleAnswers.length; ++i) {
                 const possibleAnswer = possibleAnswers[i];
-                const button = this.createButton(possibleAnswer, () => {
+                const button = this.createButton(possibleAnswer, 'btn', () => {
                     round.acceptAnswer(possibleAnswer);
                     this.nextRound();
                 });
@@ -238,8 +242,9 @@ document.addEventListener('DOMContentLoaded', function () {
             parentElement.appendChild(buttonsContainer);
         }
 
-        createButton(text, listener) {
+        createButton(text, className, listener) {
             const button = document.createElement('button');
+            button.classList = className;
             button.innerText = text;
 
             if (listener) {

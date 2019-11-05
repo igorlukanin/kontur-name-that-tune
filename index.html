@@ -5,9 +5,10 @@
         <title>Игра "Угадай технологию"</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="normalize.css">
     </head>
 
-    <body>
+    <body class="body">
         <section class="frame frame_registration js-frame_registration">
             <form class="js-form form">
                 <label class="form__line">
@@ -19,21 +20,23 @@
                     <input type="email" name="email" class="js-email-input form__input" required>
                 </label>
                 <label class="form__line">
-                    <button type="submit" class="js-submit-form form__input">Регистрация</button>
+                    <button type="submit" class="js-submit-form btn btn_full">Регистрация</button>
                 </label>
             </form>
         </section>
 
-        <section class="frame js-frame_rules hidden">
-            <h1 class="frame__title">Правила:</h1>
-            <div class="frame__content">Текст правил, не правил</div>
-            <button type="submit" class="js-start-game form__input">Начать игру</button>
+        <section class="frame frame_rules js-frame_rules hidden">
+            <div class="rules">
+                <h1 class="frame__title">Правила:</h1>
+                <div class="frame__content">Текст правил, не правил</div>
+                <button type="submit" class="js-start-game btn">Начать игру</button>
+            </div>
         </section>
 
-        <section class="frame js-frame_game">
-            <button type="submit" class="js-reset hidden">Начать заново</button>
-            <div class="js-timer hidden"></div>
-            <div class="js-score"></div>
+        <section class="frame frame_game js-frame_game hidden">
+            <button type="submit" class="js-reset hidden btn">Начать заново</button>
+            <div class="js-timer hidden timer"></div>
+            <div class="js-score score"></div>
             <div class="js-game-window"></div>
         </section>
         <script src="./script.js"></script>
