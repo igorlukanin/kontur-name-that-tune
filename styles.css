@@ -158,3 +158,12 @@ html {
     right: 0;
     animation: added-time 1.5s infinite ease-in-out;
 }
+
+.dashboard td {
+    border: 1px solid #e1e1e1;
+    padding: 3px 10px;
+}
+
+.dashboard table {
+    border-spacing: 0;
+}

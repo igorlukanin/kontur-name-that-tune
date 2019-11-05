@@ -4,12 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
     let dashboardContent;
 
     if (!!results) {
-        const resultsString = results
+        const sortedResults = results.sort(function(a, b) {
+            return b.score - a.score;
+        });
+        const resultsString = sortedResults
             .map(result => `<tr><td>${result.name}</td><td>${result.email}</td><td>${result.score}</td></tr>`)
             .reduce((sum, current) => sum + current);
 
         dashboardContent = document.createElement('table');
-        dashboardContent.innerHTML = resultsString;
+        dashboardContent.innerHTML = '<tr><td>Имя</td><td>Почта</td><td>Очки</td></tr>' + resultsString;
     } else {
         dashboardContent = 'Не найдено результатов'
     }
