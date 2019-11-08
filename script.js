@@ -349,9 +349,191 @@ document.addEventListener('DOMContentLoaded', function () {
             shuffle(possibleAnswers));
     };
 
-    const languages = ['Java', 'Erlang', 'Python', 'Swift', 'Rust', 'Elm', 'Elixir'];
+    const languages = [
+        'PHP',
+        'F#',
+        'Scala',
+        'C#',
+        'Java',
+        'Erlang',
+        'Python',
+        'Swift',
+        'Rust',
+        'Elm',
+        'Elixir'
+    ];
 
     const questions = [
+        prepareQuestion("C#", languages,
+            "int n1=0,n2=1,n3,i,number;\n" +
+            "number = int.Parse(Console.ReadLine());\n" +
+            "Console.Write(n1+\" \"+n2+\" \");\n" +
+            "for(i=2;i<number;++i)\n" +
+            "{\n" +
+            "    n3=n1+n2;    \n" +
+            "    Console.Write(n3+\" \");    \n" +
+            "    n1=n2;    \n" +
+            "    n2=n3;    \n" +
+            "}"),
+
+        prepareQuestion("C#", languages,
+            "var names = new List<string>() { \"John\", \"Tom\", \"Peter\" };\n" +
+            "foreach (string name in names)\n" +
+            "{\n" +
+            "    Console.WriteLine(name);\n" +
+            "}"),
+
+        prepareQuestion("Scala", languages,
+            "val width = args(0).toInt\n" +
+            "for (arg <- args.drop(1))\n" +
+            "    LongLines.processFile(arg, width)"),
+
+        prepareQuestion("Scala", languages,
+            "def isPrime(n: Int) = (2 until n) forall (n % _ != 0)\n" +
+            "for (i <- 1 to 100 if isPrime(i)) println(i)"),
+
+        prepareQuestion("Scala", languages,
+            "implicit def arrayWrapper[A : ClassManifest](x: Array[A]) =\n" +
+            "    new {\n" +
+            "        def sort(p: (A, A) => Boolean) = {\n" +
+            "            util.Sorting.stableSort(x, p); x\n" +
+            "        }\n" +
+            "    }\n" +
+            "val x = Array(2, 3, 1, 4)\n" +
+            "println(\"x = \"+ x.sort((x: Int, y: Int) => x < y))"),
+
+        prepareQuestion("Scala", languages,
+            "def factorial(n: BigInt): BigInt =\n" +
+            "    if (n == 0) 1 else n * factorial(n-1)\n" +
+            "val f50 = factorial(50); val f49 = factorial(49)\n" +
+            "println(\"50!/49! = \" + (f50 / f49))"),
+
+        prepareQuestion("Scala", languages,
+            "object HelloWorld {\n" +
+            "    def main(args: Array[String]) {\n" +
+            "        println(\"Hello, world!\")\n" +
+            "    }\n" +
+            "}"),
+
+        prepareQuestion("F#", languages,
+            "let ``fizzbuzz Exibit A`` n = \n" +
+            "    if n % 3 = 0 && n % 5 = 0 then \"fizzbuzz\"\n" +
+            "    elif n % 3 = 0 then \"fizz\"\n" +
+            "    elif n % 5 = 0 then \"buzz\"\n" +
+            "    else string n"),
+
+        prepareQuestion("F#", languages,
+            "type App<'F, 't> = private App of payload : obj\n" +
+            "module HKT =\n" +
+            "    let inline pack (value : 'Fa) : App<'F, 'a>\n" +
+            "        when 'F : (static member Assign : App<'F, 'a> * 'Fa -> unit) =\n" +
+            "        App value\n" +
+            "    let inline unpack (App value : App<'F, 'a>) : 'Fa\n" +
+            "        when 'F : (static member Assign : App<'F, 'a> * 'Fa -> unit) =\n" +
+            "        value :?> _\n" +
+            "    let inline (|Unpack|) app = unpack app"),
+
+        prepareQuestion("F#", languages,
+            "type Mutator<'T> = 'T -> 'T\n" +
+            "let rec mutate<'T> (t : 'T) : 'T =\n" +
+            "    match cache.TryFind<Mutator<'T>> () with\n" +
+            "    | Some m -> m t\n" +
+            "    | None ->\n" +
+            "        use ctx = cache.CreateRecTypeManager()\n" +
+            "        mkMutatorCached<'T> ctx t"),
+
+        prepareQuestion("F#", languages,
+            "type Parser<'T> = Parser<'T, unit>\n" +
+            "let inline delay (f : unit -> 'T) : Parser<'T> =\n" +
+            "    fun _ -> Reply(f())\n" +
+            "let spaced p = between spaces spaces p\n" +
+            "let (<*>) (f : Parser<'T -> 'S>) (t : Parser<'T>) : Parser<'S> = \n" +
+            "    parse {\n" +
+            "        let! tv = t\n" +
+            "        let! fv = f\n" +
+            "        return fv tv\n" +
+            "    }"),
+
+        prepareQuestion("F#", languages,
+            "let lambda (f : Expr<'T> -> Expr<'R>) : Expr<'T -> 'R> =\n" +
+            "    let var = new Var(\"__temp__\", typeof<'T>)\n" +
+            "    Expr.Cast<_>(Expr.Lambda(var,  f (Expr.Cast<_>(Expr.Var var))))"),
+
+        prepareQuestion("F#", languages,
+            "type IA = abstract Action : unit -> unit\n" +
+            "type Type = \n" +
+            "  | TypeA \n" +
+            "  | TypeB\n" +
+            "let factory = function\n" +
+            "  | TypeA -> { new IA with member this.Action() = printfn \"type A\" }\n" +
+            "  | TypeB -> { new IA with member this.Action() = printfn \"type B\" }"),
+
+        prepareQuestion("F#", languages,
+            "let cartesianProduct l1 l2 =\n" +
+            "    List.map (fun x -> (List.map (fun y -> x * y) l2)) l1 |> List.concat\n" +
+            "let isPalindromic n = \n" +
+            "    let isAnagram (s: string) =\n" +
+            "        new string(s.ToCharArray() |> Array.rev) = s\n" +
+            "    isAnagram(string n)\n" +
+            "cartesianProduct [999..-1..100] [999..-1..100]\n" +
+            "|> List.filter isPalindromic\n" +
+            "|> List.max\n" +
+            "|> printfn \"Project Euler Problem 4 Answer: %d\""),
+
+        prepareQuestion("PHP", languages,
+            "function checkDateFormat($date) {\n" +
+            "    if (preg_match (\"/^([0-9]{4})-([0-9]{2})-([0-9]{2})$/\", $date, $parts)) {\n" +
+            "        if(checkdate($parts[2],$parts[3],$parts[1]))\n" +
+            "            return true;\n" +
+            "        else\n" +
+            "            return false;\n" +
+            "    }\n" +
+            "    else\n" +
+            "        return false;\n" +
+            "}"),
+
+        prepareQuestion("PHP", languages,
+            "$filename= \"test.jpg\";\n" +
+            "list($w, $h, $type, $attr) = getimagesize($filename);\n" +
+            "$src_im = imagecreatefromjpeg($filename);\n" +
+            "$src_x = '0'; $src_y = '0'; $src_w = '100'; $src_h = '100';\n" +
+            "$dst_im = imagecreatetruecolor($src_w, $src_h);\n" +
+            "$white = imagecolorallocate($dst_im, 255, 255, 255);\n" +
+            "imagefill($dst_im, 0, 0, $white);\n" +
+            "imagecopy($dst_im, $src_im, 0, 0, $src_x, $src_y, $src_w, $src_h);\n" +
+            "header(\"Content-type: image/png\");\n" +
+            "imagepng($dst_im);\n" +
+            "imagedestroy($dst_im);"),
+
+        prepareQuestion("PHP", languages,
+            "if(isset($_SESSION['counter'])) {\n" +
+            "    $_SESSION['counter'] ++;\n" +
+            "}\n" +
+            "else {\n" +
+            "    $_SESSION['counter'] = 1;\n" +
+            "}\n" +
+            "echo \"counter: \" . $_SESSION['counter'];"),
+
+        prepareQuestion("PHP", languages,
+            "$object = array('one'   =>  1,\n" +
+            "                'two'   =>  2,\n" +
+            "                'three' =>  3);\n" +
+            "foreach ($object as $key => $val) {\n" +
+            "    print \"<br>$key: $val\";\n" +
+            "}"),
+
+        prepareQuestion('PHP', languages,
+            "$a = array('one', 'two', 'three');\n" +
+            "$a[] = 'four';\n" +
+            "array_push($a, 'five');\n" +
+            "foreach ($a as $val) {\n" +
+            "    print \"<br>$val\";\n" +
+            "}\n" +
+            "print \"<p>\";\n" +
+            "foreach ($a as $ix => $val) {\n" +
+            "    print \"<br>$ix: $val\";\n" +
+            "}"),
+
         prepareQuestion('Java', languages,
             "public class Cat extends Animal {\n" +
             "\n" +
@@ -513,27 +695,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
         prepareQuestion('Swift', languages,
             "let fileName = \"myFileName.txt\"\n" +
-            "        var filePath = \"\"\n" +
-            "        \n" +
-            "        let dirs:[String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)\n" +
-            "        \n" +
-            "        if dirs.count > 0 {\n" +
-            "            let dir = dirs[0] //documents directory\n" +
-            "            filePath = dir.appending(\"/\" + fileName)\n" +
-            "            print(\"Local path = \\(filePath)\")\n" +
-            "        } else {\n" +
-            "            print(\"Could not find local directory to store file\")\n" +
-            "            return\n" +
-            "        }\n" +
-            "        \n" +
-            "        let fileContentToWrite = \"Text to be recorded into file\"\n" +
-            "        \n" +
-            "        do {\n" +
-            "            try fileContentToWrite.write(toFile: filePath, atomically: false, encoding: String.Encoding.utf8)\n" +
-            "        }\n" +
-            "        catch let error as NSError {\n" +
-            "            print(\"An error took place: \\(error)\")\n" +
-            "        }"),
+            "var filePath = \"\"\n" +
+            "\n" +
+            "let dirs:[String] = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.allDomainsMask, true)\n" +
+            "\n" +
+            "if dirs.count > 0 {\n" +
+            "    let dir = dirs[0] //documents directory\n" +
+            "    filePath = dir.appending(\"/\" + fileName)\n" +
+            "    print(\"Local path = \\(filePath)\")\n" +
+            "} else {\n" +
+            "    print(\"Could not find local directory to store file\")\n" +
+            "    return\n" +
+            "}\n" +
+            "\n" +
+            "let fileContentToWrite = \"Text to be recorded into file\"\n" +
+            "\n" +
+            "do {\n" +
+            "    try fileContentToWrite.write(toFile: filePath, atomically: false, encoding: String.Encoding.utf8)\n" +
+            "}\n" +
+            "catch let error as NSError {\n" +
+            "    print(\"An error took place: \\(error)\")\n" +
+            "}"),
 
         prepareQuestion('Swift', languages,
             "class ViewController: UIViewController  {\n" +
