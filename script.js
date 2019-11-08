@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', function () {
         constructor(config) {
             this.timerDOMNode = document.querySelector('.js-timer');
             this.gameTime = config.gameTime;
-            this.timerDOMNode.innerHTML = this.gameTime;
+            this.timerDOMNode.innerHTML = 'Таймер: ' + this.gameTime;
         }
 
         startTimer(gameTime, finishGame){
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const totalScoreElem = document.createElement('div');
             const totalScore = this.calcTotalScore();
             totalScoreElem.className = 'total-score';
-            totalScoreElem.innerText = `Ваш итоговый результат: ${totalScore}`;
+            totalScoreElem.innerText = `Итоговый результат: ${totalScore}`;
             this.gameElement.appendChild(totalScoreElem);
 
             this.saveData(this.user, totalScore);
@@ -219,13 +219,13 @@ document.addEventListener('DOMContentLoaded', function () {
                 codeContainer.appendChild(this.createParagraph(sampleLines[i]));
             }
 
-            const button = this.createButton('Показать еще строку', 'btn btn_link', () => {
+            const button = this.createButton('Показать ещё строчку...', 'btn btn_link', () => {
                 round.showOneMoreLine();
                 this.renderRound(round);
             });
 
-            parentElement.appendChild(button);
             parentElement.appendChild(codeContainer);
+            parentElement.appendChild(button);
         }
 
         renderAnswers(
@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         return new Question(
-            'Какой язык программирования представлен?',
+            'Какой это язык программирования?',
             codeLines.split(/\r?\n/),
             language,
             shuffle(possibleAnswers));

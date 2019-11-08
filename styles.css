@@ -35,7 +35,7 @@ html {
 }
 
 .form__label {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
 }
 
 .btn {
@@ -61,6 +61,7 @@ html {
 .btn_link {
     font-weight: 400;
     color: #007bff;
+    margin: auto;
     text-decoration: none;
     background-color: transparent;
     padding: 0;
@@ -109,15 +110,15 @@ html {
 
 .timer {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 50px;
+    right: 250px;
     font-size: 24px;
 }
 
 .score {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50px;
+    left: 250px;
     font-size: 24px;
 }
 
@@ -135,6 +136,7 @@ html {
     display: flex;
     flex-wrap: wrap;
     border: 1px solid #e9e9e9;
+    margin-top: 20px;
 }
 
 .answers-row .btn {
@@ -166,4 +168,9 @@ html {
 
 .dashboard table {
     border-spacing: 0;
+}
+
+.score-wrapper {
+    max-width: 500px;
+    margin: auto;
 }
