@@ -71,9 +71,9 @@ document.addEventListener('DOMContentLoaded', function () {
             this.startTimer(this.gameTime, finishGame);
         }
 
-        addTime(seconds) {
+        addTime(seconds, finishGame) {
             this.destroy();
-            this.startTimer(this.gameTime + seconds);
+            this.startTimer(this.gameTime + seconds, finishGame);
             this.showAddedTime(seconds);
         }
 
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
             this.user = user;
             this.rounds = shuffle(config.questions)
                 .slice(0, config.gameLength)
-                .map(x => new Round(x, config.maxRoundScore, this.timer));
+                .map(x => new Round(x, config.maxRoundScore, this.timer, this.finish.bind(this)));
 
             this.startGameBtn.addEventListener('click', () => {
                 this.rulesFrame.classList.toggle('hidden');
@@ -280,12 +280,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     class Round {
-        constructor(question, maxScore, timer) {
+        constructor(question, maxScore, timer, finishGame) {
             this.maxScore = maxScore;               // int
             this.roundScore = 0;                    // int
             this.visibleLines = 1;                  // int
             this.question = question;               // Question
             this.timer = timer;                 // func
+            this.finishGame = finishGame;
         }
 
         getSampleLines() {
@@ -300,7 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         acceptAnswer(answer) {
             if (answer === this.question.correctAnswer) {
-                this.timer.addTime(10);
+                this.timer.addTime(10, this.finishGame);
                 switch (this.visibleLines) {
                     case 1:
                         this.roundScore = this.maxScore * 1.0;
