@@ -337,7 +337,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         while (possibleAnswers.length < AMOUNT_OF_ANSWER_OPTIONS) {
             const randomIndex = getRandomInt(languages.length);
-            if (languages[randomIndex] !== language) {
+            if (possibleAnswers.indexOf(languages[randomIndex]) === -1) {
                 possibleAnswers.push(languages[randomIndex]);
             }
         }
