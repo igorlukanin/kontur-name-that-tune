@@ -28,10 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const game = new Game(
             currentUser,
             {
-                gameLength: 4,
+                gameLength: 10,
                 maxRoundScore: 10,
                 questions: questions,
-                timer: new Timer({gameTime: 50}),
+                timer: new Timer({gameTime: 30}),
             });
 
         game.showRules();
